@@ -22,7 +22,7 @@
  *   5, 5  => 25
  */
 function getRectangleArea(width, height) {
-    throw new Error('Not implemented');
+    return width*height;
 }
 
 
@@ -38,7 +38,7 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCicleCircumference(radius) {
-    throw new Error('Not implemented');
+    return radius*2*3.141592653589793;
 }
 
 /**
@@ -54,7 +54,8 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    throw new Error('Not implemented');
+   console.log (value1, value2);
+    return (value1 + value2) / 2 ;
 }
 
 /**
@@ -73,7 +74,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-    throw new Error('Not implemented');
+    return Math.sqrt(Math.pow(x2 - x1, 2)+Math.pow(y2 - y1, 2));
 }
 
 /**
@@ -89,7 +90,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-    throw new Error('Not implemented');
+    return -b/a;
 }
 
 
@@ -111,7 +112,31 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-    throw new Error('Not implemented');
+    var vector1 = [x1, x2];
+    var vector2 = [y1, y2];
+    
+    var scalMultVectors = vector1.reduce(function(sum, current, i) {
+        return sum + (current * vector2[i])
+    }, 0);
+    // модуль вектора равен квадратному корню из суммы квадратов его координат
+    var moduleVector = function(v) {
+        // Находим квадраты слагаемых
+        var step1 = v.map(function(currentValue) {
+            return Math.pow(currentValue, 2)
+        });
+        // Складываем их
+        var step2 = step1.reduce(function(sum, current) {
+            return sum + current
+        });
+        // Вычисляем квадратный корень
+        return Math.sqrt(step2, 2)
+    };
+    // Вычисляем косинус угла между векторами
+    var cosA = scalMultVectors / (moduleVector(vector1) * moduleVector(vector2));
+    console.log("cos(" + cosA + ")");
+    return Math.acos(cosA);
+    
+    ;
 }
 
 /**
@@ -127,7 +152,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    throw new Error('Not implemented');
+    return value % 10;
 }
 
 
@@ -143,7 +168,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-    throw new Error('Not implemented');
+    return Number(value);
 }
 
 /**
@@ -160,7 +185,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    throw new Error('Not implemented');
+    return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
 }
 
 /**
@@ -181,7 +206,8 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    throw new Error('Not implemented');
+    pow = Math.pow(10, pow);
+    return Math.round(num/pow)*pow;
 }
 
 /**
@@ -202,7 +228,11 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-    throw new Error('Not implemented');
+   let y = 0;
+    for (let j = 2; j < n; j++){
+       if (n % j == 0) { y = 1}
+   } 
+   return ( y == 0) ? true : false ;      
 }
 
 /**
@@ -221,7 +251,12 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+    var nn = Number(value);
+    if ( typeof(nn === "number")) {return nn} 
+     else {return def}
+    
+    //console.log (Number(value), def);
+    //return Number(value);
 }
 
 module.exports = {
