@@ -132,15 +132,10 @@ function removeFalsyValues(arr) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-   /**console.log(arr);
    var str = arr.join();
-   var str1 = str.toUpperCase();
-   var arr1 = str1.slice('');
-   
-   console.log(arr1);
+   var str1 = str.toUpperCase(',');
+   var arr1 = str1.split(',' );
    return arr1;
-   */
-   throw new Error('Not implemented');
 }
 
 

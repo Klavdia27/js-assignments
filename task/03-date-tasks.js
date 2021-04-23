@@ -82,6 +82,7 @@ function timeSpanToString(startDate, endDate) {
    console.log (vr);
     
    return (vr);
+   
    */
    throw new Error('Not implemented');
 }

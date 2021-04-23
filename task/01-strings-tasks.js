@@ -114,7 +114,11 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+    var str = "";
+    for (let i = 0; i < count; i++){
+        str = str.concat(value);
+    }
+    return str;
 }
 
 /**
@@ -250,7 +254,7 @@ function encodeToRot13(str) {
 function isString(value) {
     throw new Error('Not implemented');
     //console.log(typeof(value));
-    //return typeof(value) === 'string' ? true : false;
+    //return typeof(value) == 'string' ? true : false ;
 }
 
 
