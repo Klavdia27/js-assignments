@@ -54,8 +54,7 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-   console.log (value1, value2);
-    return (value1 + value2) / 2;
+  return (BigInt(value1) + BigInt(value2)) / BigInt(2);
 }
 
 /**
@@ -136,7 +135,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
     console.log("cos(" + cosA + ")");
     return Math.acos(cosA);
     
-    ;
+  
 }
 
 /**
@@ -251,12 +250,11 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    var nn = Number(value);
-    if ( typeof(nn === "number")) {return nn} 
+    //var nn = Number(value);
+    console.log(typeof(value), "value = ", value);
+    if ( typeof(value) === Number) {return value} 
      else {return def}
     
-    //console.log (Number(value), def);
-    //return Number(value);
 }
 
 module.exports = {
