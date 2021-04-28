@@ -227,21 +227,11 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    //var nn = Number(value);
-    //console.log(typeof(value), "value = ", value, ' ');
-    //console.log('isnan value=', isNaN(value));
-    console.log ('111value = ', value, 'typeof = ', typeof(value));
-  //var val = Number(value);
-    if ( typeof(value) === "number") {
-        console.log ('222value = ', value, 'typeof = ', typeof(value));
-        return value
+    const result = Number(value);
+    if (isNaN(result)) {
+          return def
     }
-    else {
-        var val = Number(value);
-        if (typeof(val) === "number") {return value};
-        return def
-    }
-
+    return result;
 }
 
 module.exports = {
