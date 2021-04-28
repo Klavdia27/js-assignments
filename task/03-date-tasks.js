@@ -78,15 +78,11 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   /**var vr = endDate.getTime() - startDate.getTime()
-   console.log (vr);
-    
-   return (vr);
-   
-   */
-   throw new Error('Not implemented');
-}
-
+   var newDate = new Date(endDate.getTime() - startDate.getTime());
+   const time = newDate.toISOString().split('T')[1];
+   var result = time.substring(0, time.length - 1);
+   return (result);
+}  
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
@@ -102,10 +98,25 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-   /**var gr = date.toUTCString();
-   console.log(gr);
-   return gr */
-   throw new Error('Not implemented');
+
+
+   //var ugol = (x1*x2 + y1*y2)/(Math.hypot(x1, y1) * Math.hypot(x2, y2));
+   //const result =  Math.acos(ugol);
+   
+   var newDate = new Date(date.toUTCString());
+   console.log(newDate);
+   
+   const hour = newDate.getHours();
+   console.log(hour);
+ 
+   const minute = newDate.getMinutes(); 
+   console.log(minute);
+
+   const result =  (hour * 30 + minute * 0.5) - (minute * 6);
+   console.log(result);
+   return result; 
+
+   //throw new Error('Not implemented');
 }
 
 
