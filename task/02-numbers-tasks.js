@@ -111,31 +111,8 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-    var vector1 = [x1, x2];
-    var vector2 = [y1, y2];
-    
-    var scalMultVectors = vector1.reduce(function(sum, current, i) {
-        return sum + (current * vector2[i])
-    }, 0);
-    // модуль вектора равен квадратному корню из суммы квадратов его координат
-    var moduleVector = function(v) {
-        // Находим квадраты слагаемых
-        var step1 = v.map(function(currentValue) {
-            return Math.pow(currentValue, 2)
-        });
-        // Складываем их
-        var step2 = step1.reduce(function(sum, current) {
-            return sum + current
-        });
-        // Вычисляем квадратный корень
-        return Math.sqrt(step2, 2)
-    };
-    // Вычисляем косинус угла между векторами
-    var cosA = scalMultVectors / (moduleVector(vector1) * moduleVector(vector2));
-    console.log("cos(" + cosA + ")");
-    return Math.acos(cosA);
-    
-  
+   var ugol = (x1*x2 + y1*y2)/(Math.hypot(x1, y1) * Math.hypot(x2, y2));
+   return Math.acos(ugol);
 }
 
 /**
@@ -251,10 +228,20 @@ function isPrime(n) {
  */
 function toNumber(value, def) {
     //var nn = Number(value);
-    console.log(typeof(value), "value = ", value);
-    if ( typeof(value) === Number) {return value} 
-     else {return def}
-    
+    //console.log(typeof(value), "value = ", value, ' ');
+    //console.log('isnan value=', isNaN(value));
+    console.log ('111value = ', value, 'typeof = ', typeof(value));
+  //var val = Number(value);
+    if ( typeof(value) === "number") {
+        console.log ('222value = ', value, 'typeof = ', typeof(value));
+        return value
+    }
+    else {
+        var val = Number(value);
+        if (typeof(val) === "number") {return value};
+        return def
+    }
+
 }
 
 module.exports = {
