@@ -42,7 +42,7 @@ function generateOdds(len) {
    for (let i = 0; i < len; i++) {
       arr.push(i*2 + 1);
    };
-   return arr;
+   return arr; 
 }
 
 
@@ -107,18 +107,17 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-   /**console.log(arr);
-   arr = arr.filter(item => (item != "false" ));
-   arr = arr.filter(item => (item != "null" ));
-   arr = arr.filter(item => (item != 0 ));
-   arr = arr.filter(item => (item != '' ));
-   arr = arr.filter(item => (item != "undefined" ));
-   arr = arr.filter(item => (item != "NaN" ));
-   console.log(arr);
-   return arr;
-   */
-
-   throw new Error('Not implemented');
+  const result = arr.filter(x => x !== false)
+                  .filter(x => x !== 0)
+                  .filter(x => x !== "")
+                  .filter(x => {
+                     if (typeof x === "string") return true;
+                     if (typeof x === "boolean") return true;
+                     if (isNaN(x) === false && typeof(x) === "number") return true;
+                     if (isNaN(x)) return false;
+                     return false;
+                  });
+  return result;
 }
 
 /**
@@ -597,7 +596,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+   return arr.flatMap(childrenSelector);
 }
 
 
