@@ -178,7 +178,8 @@ function insertItem(arr, item, index) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
 function getHead(arr, n) {
-   throw new Error('Not implemented');
+   arr.splice(n);
+   return arr;
 }
 
 
@@ -193,7 +194,7 @@ function getHead(arr, n) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-   throw new Error('Not implemented');
+   return arr.splice(arr.length - n);
 }
 
 
@@ -218,7 +219,15 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   throw new Error('Not implemented');
+   console.log(arr);
+   
+   var arr1 = [];
+   if (arr.length === 0) return arr;
+   else {
+   var result = arr1.concat(arr[0]) + '\n' + arr1.concat(arr[1]) + '\n' + arr1.concat(arr[2]) + "\n" + arr1.concat(arr[3]);
+   console.log(result);
+   return result }
+   //throw new Error('Not implemented');
 }
 
 /**
@@ -538,15 +547,17 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   /**var arr1 = [];
-   for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < i; j++){
-         if (arr1[j] != arr[i]) {arr1[i] = arr[i]} 
+   var arr1 = [];
+   
+   arr.reduce((acc, item, index, array) => {
+      if (acc.indexOf(item) === -1) {
+         acc.push(item);
+         arr1.push(item);
       }
-   }
+      return acc;
+   }, []); 
+
    return arr1;
-   */
-   throw new Error('Not implemented');
 }
 
 /**
