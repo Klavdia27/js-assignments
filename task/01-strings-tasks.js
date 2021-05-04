@@ -205,7 +205,27 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+var wdl1 = '';
+var wdl2 = "";
+for (let i = 1; i <= width - 2; i++) {
+    wdl1 = wdl1 + "\u02D7";
+    wdl2 = wdl2 + " ";
+};
+let bn ="";
+function vnutri (num){ 
+    for (let a = 1; a <= (num - 2); a++) {
+    bn = bn + "|" + wdl2 + "|" + "\n"; 
+    };
+    return bn;
+}
+console.log(bn);
+var result ="|" +  wdl1 + "\u02E5\n" + vnutri(height) + "\u02E5" + wdl1 + "|";
+console.log(result);
+return result;
+
+        
+    
+    //throw new Error('Not implemented');
 }
 
 
@@ -252,9 +272,9 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
-    //console.log(typeof(value));
-    //return typeof(value) == 'string' ? true : false ;
+    //throw new Error('Not implemented');
+    console.log(typeof(value));
+    return typeof(value) == 'string' ? true : false ;
 }
 
 

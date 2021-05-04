@@ -222,7 +222,7 @@ function toCsvText(arr) {
    console.log(arr);
    
    var arr1 = [];
-   if (arr.length === 0) return arr;
+   if (arr.length === 0 ) return arr
    else {
    var result = arr1.concat(arr[0]) + '\n' + arr1.concat(arr[1]) + '\n' + arr1.concat(arr[2]) + "\n" + arr1.concat(arr[3]);
    console.log(result);
@@ -306,7 +306,22 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   throw new Error('Not implemented');
+   //console.log('массив ', arr);
+   var arr1 = [];
+   arr1[0] = arr[0];
+   var res = (arr.length * (arr.length+1)) / 2; // количество элементов нового массива
+   var sum = 0; 
+   for (let a = 0; a < arr.length - 1; a++) {
+      sum = ((a+1)*(a+1+1)/2);
+      for (let i = sum; i <= sum+a+1; i++ ) {
+            arr1[i] = arr[a+1];
+
+      }
+   }
+    
+   if (arr.length <= 1) return arr;
+   //console.log('изменненый массив ', arr1);
+   return arr1;
 }
 
 
@@ -342,16 +357,16 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   /**var sum = 0; 
+   var sum = 0; 
    for (let i = 0; i < arr.length; i++){
-     if ((typeof(arr[i] === "number")) && (arr[i] > 0 )) {
+     if ((typeof(arr[i] === "number" )) && (arr[i] > 0 )) {
        sum = sum + 1;
      }
    };
-   console.log(sum, "kk");
+   console.log('массив = ', arr,  "кол-во чисел = ", sum);
    return sum;
-   */
-throw new Error('Not implemented');
+   
+  //throw new Error('Not implemented');
 }
  
 /** 
@@ -369,7 +384,39 @@ throw new Error('Not implemented');
  */
 function sortDigitNamesByNumericOrder(arr) {
    
-   throw new Error('Not implemented');
+   for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === 'nine') {arr[i] = 9};
+      if (arr[i] === 'eight') {arr[i] = 8};
+      if (arr[i] === 'one') {arr[i] = 1};
+      if (arr[i] === 'two') {arr[i] = 2};
+      if (arr[i] === 'three') {arr[i] = 3};
+      if (arr[i] === 'zero') {arr[i] = 0};
+      if (arr[i] === 'five') {arr[i] = 5};
+      if (arr[i] === 'four') {arr[i] = 4};
+      if (arr[i] === 'six') {arr[i] = 6};
+      if (arr[i] === 'seven') {arr[i] = 7};
+   }
+   
+   arr.sort(function(a, b) {
+      return a - b;
+    });
+    
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === 9) {arr[i] = 'nine'};
+      if (arr[i] === 8) {arr[i] = 'eight'};
+      if (arr[i] === 1) {arr[i] = 'one'};
+      if (arr[i] === 2) {arr[i] = 'two'};
+      if (arr[i] === 3) {arr[i] = 'three'};
+      if (arr[i] === 0) {arr[i] = 'zero'};
+      if (arr[i] === 4) {arr[i] = 'four'};
+      if (arr[i] === 5) {arr[i] = 'five'};
+      if (arr[i] === 6) {arr[i] = 'six'};
+      if (arr[i] === 7) {arr[i] = 'seven'};  
+   }
+ 
+   if (arr.length === 0) return arr;
+
+   return arr;
 }
 
 /** 
@@ -401,7 +448,20 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-   throw new Error('Not implemented');
+   var sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+     if ((arr[i] === 'false') && (typeof(arr[i]) === Boolean)) {sum +=1}; 
+     if (arr[i] === 0) {sum +=1}; 
+     if (arr[i] === '') {sum +=1}; 
+     if (arr[i] === null) {sum +=1}; 
+     if (arr[i] === NaN) {sum +=1};    // isNaN(NaN) - true, isNaN(arr[i]) - ??? тогда не правильно считает в 3 примере.
+     if (arr[i] === undefined) {sum +=1}; 
+     
+  }
+  // не считает NaN и false в последнем примере
+  console.log('array=', arr, 'sum=', sum);
+  return sum;
+   //throw new Error('Not implemented');
 }
 
 /**
@@ -510,7 +570,25 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+  //n = 3; 
+  var arr = []; 
+  var array = [];
+  var i = 0;
+
+for (let s = 0; s < n; s++) {
+   for ( i = 0; i < n; i++) {
+      arr[i] = 0;  
+      arr[s] = 1;
+   }
+   console.log(arr, 's=', s);
+   array[s] = arr;
+}
+
+   console.log('array', array)
+
+   if (n = 1) return [[1]];
+   return array;
+   //throw new Error('Not implemented');
 }
 
 /**
@@ -591,7 +669,11 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+  console.log('результат=',  array
+                                 .filter(item => item.country === 'Belarus' )
+                                 .map(item => item.city));
+  
+  //throw new Error('Not implemented');
 }
 
 
@@ -647,7 +729,22 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+   var x = Math.floor(arr.length / 2); // целая часть половины длины массива
+   var arr2 = [];
+   var arr1 = [];
+if ((x >= 1) && (arr.length % 2 !== 1)) {
+   arr2 = arr.splice(x); 
+   return arr2.concat(arr);
+}
+var arrk = [];
+if ((x >= 1) && (arr.length % 2 === 1)) {
+   arr2 = arr.splice(x+1);
+   arrk = arr.splice(x, 1);
+   arr1 = arr.splice(0, x);
+   return arr2.concat(arrk).concat(arr1);
+}
+
+if (arr.length === 1) return arr;
 }
 
 

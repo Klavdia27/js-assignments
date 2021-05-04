@@ -312,7 +312,40 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    var dl = num.toString().length;
+    var x = 0;
+    var sum = 0;
+
+    function summa (num){
+        sum = 0; 
+        for ( let i = 1; i <= dl; i++) {
+            x = num % 10; 
+            sum = sum + x;
+            num = Math.floor(num/10);
+        }
+    }
+    summa (num);
+    if (sum > 9) {summa(sum)};
+
+    return sum;
+    
+    
+    //const dl = num.toString().length;
+    //console.log( num, num.toString().length);
+    /**var b = String(num).split("");
+    var x = num; 
+     
+    while (x > 10) {
+     x = b.reduce( (acc,item,index,b) => acc + +item, 0);
+     b = String(acc).split("");
+    }
+    console.log (b);
+    return x
+    */
+
+    //console.log(b);
+    //console.log(+b[0] + +b[1])
+    
 }
 
 
@@ -338,6 +371,12 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
+   /**  var array = str.split('');
+    console.log(array);
+    */
+    
+    
+    
     throw new Error('Not implemented');
 }
 
@@ -398,7 +437,10 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    var x = parseInt(num, n);
+    console.log(x);
+    
+    //throw new Error('Not implemented');
 }
 
 
