@@ -208,7 +208,7 @@ function getRectangleString(width, height) {
 var wdl1 = '';
 var wdl2 = "";
 for (let i = 1; i <= width - 2; i++) {
-    wdl1 = wdl1 + "\u02D7";
+    wdl1 = wdl1 + "-";
     wdl2 = wdl2 + " ";
 };
 let bn ="";
@@ -219,7 +219,7 @@ function vnutri (num){
     return bn;
 }
 console.log(bn);
-var result ="|" +  wdl1 + "\u02E5\n" + vnutri(height) + "\u02E5" + wdl1 + "|";
+var result ="|" +  wdl1 + "|\n" + vnutri(height) + "|" + wdl1 + "|";
 console.log(result);
 return result;
 
@@ -272,9 +272,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    //throw new Error('Not implemented');
-    console.log(typeof(value));
-    return typeof(value) == 'string' ? true : false ;
+    return ((typeof(value) == 'string') || (value instanceof String)) ? true : false ;
 }
 
 
