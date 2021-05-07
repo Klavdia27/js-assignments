@@ -296,22 +296,12 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   //console.log('массив ', arr);
-   var arr1 = [];
-   arr1[0] = arr[0];
-   var res = (arr.length * (arr.length+1)) / 2; // количество элементов нового массива
-   var sum = 0; 
-   for (let a = 0; a < arr.length - 1; a++) {
-      sum = ((a+1)*(a+1+1)/2);
-      for (let i = sum; i <= sum+a+1; i++ ) {
-            arr1[i] = arr[a+1];
-
-      }
-   }
-    
-   if (arr.length <= 1) return arr;
-   //console.log('изменненый массив ', arr1);
-   return arr1;
+   var result = []; 
+   if (arr.length === 0 || arr.length === 1) return arr; 
+   arr.map(function(item, index) { 
+     result = result.concat(Array(index + 1).fill(item)); 
+   }); 
+   return result; 
 }
 
 
