@@ -38,11 +38,7 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   let arr = [];
-   for (let i = 0; i < len; i++) {
-      arr.push(i*2 + 1);
-   };
-   return arr; 
+   return new Array(len).fill(0).map((item, i) => 2*i+1);
 }
 
 
@@ -218,16 +214,12 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(arr) {
-   console.log(arr);
-   
+function toCsvText(arr) {  
    var arr1 = [];
-   if (arr.length === 0 ) return arr
+   if (arr.length === 1 ) return ''
    else {
    var result = arr1.concat(arr[0]) + '\n' + arr1.concat(arr[1]) + '\n' + arr1.concat(arr[2]) + "\n" + arr1.concat(arr[3]);
-   console.log(result);
    return result }
-   //throw new Error('Not implemented');
 }
 
 /**
@@ -261,14 +253,16 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-   var arr11 = [];
-   arr11[0] = arr[0];
-   
-   for (let i = 1; i < arr.length; i++){
-     arr11[i] = arr11[i-1]+arr[i];
-   }
-   
-   return arr11; 
+ 
+   var array = [];
+   array[0]  = arr [0];
+   const result = arr.reduce((acc, item, index, arr) => {
+      acc = array[index-1] + arr[index];
+      array.push(array[index-1] + arr[index]);
+      return acc;
+   }, );
+
+   return array;   
 }
 
 /**
@@ -283,11 +277,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   var arr2 = [];
-   for (let i = 0; i < arr.length; i++){
-      if (i % 2 == 1) {arr2.push(arr[i])}
-   }
-   return arr2;
+  return arr.filter((item, index) => index % 2 !== 0 );
 }
 
 
@@ -357,16 +347,8 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   var sum = 0; 
-   for (let i = 0; i < arr.length; i++){
-     if ((typeof(arr[i] === "number" )) && (arr[i] > 0 )) {
-       sum = sum + 1;
-     }
-   };
-   console.log('массив = ', arr,  "кол-во чисел = ", sum);
-   return sum;
-   
-  //throw new Error('Not implemented');
+   const result = arr.filter(item => typeof(item) === "number").filter(item => item > 0 ).length;
+   return result;
 }
  
 /** 
@@ -448,20 +430,14 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-   var sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-     if ((arr[i] === 'false') && (typeof(arr[i]) === Boolean)) {sum +=1}; 
-     if (arr[i] === 0) {sum +=1}; 
-     if (arr[i] === '') {sum +=1}; 
-     if (arr[i] === null) {sum +=1}; 
-     if (arr[i] === NaN) {sum +=1};    // isNaN(NaN) - true, isNaN(arr[i]) - ??? тогда не правильно считает в 3 примере.
-     if (arr[i] === undefined) {sum +=1}; 
-     
-  }
-  // не считает NaN и false в последнем примере
-  console.log('array=', arr, 'sum=', sum);
-  return sum;
-   //throw new Error('Not implemented');
+   const result = arr
+                  .filter(item => item !== null)
+                  .filter(item => item !== undefined)
+                  .filter(item => !Number.isNaN(item) )
+                  .filter(item => item !== false)
+                  .filter(item => item !== '')
+                  .filter(item => item !== 0);
+   return arr.length - result.length;
 }
 
 /**
@@ -479,13 +455,11 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-   /**var kl = 0;
-   for (let i = 0; i < arr.length; i++){
-      if (arr[i] == item) {sum += 1}
-   };
-   return sum;
-   */
-   throw new Error('Not implemented');
+   const result = arr.reduce((acc, item1, index, arr) => {
+      if (item1 === item) {acc +=1};
+      return acc;
+   }, 0);
+   return result;
 }
 
 /**
@@ -570,25 +544,11 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-  //n = 3; 
-  var arr = []; 
-  var array = [];
-  var i = 0;
-
-for (let s = 0; s < n; s++) {
-   for ( i = 0; i < n; i++) {
-      arr[i] = 0;  
-      arr[s] = 1;
-   }
-   console.log(arr, 's=', s);
-   array[s] = arr;
-}
-
-   console.log('array', array)
-
-   if (n = 1) return [[1]];
-   return array;
-   //throw new Error('Not implemented');
+   return (Array(n).fill(0)).map(
+      function (itema, i){
+          return Array(n).fill(0).map(function (itemb,j){return ( i === j ) ? 1 : 0; });
+      }
+  )
 }
 
 /**
@@ -625,17 +585,17 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   var arr1 = [];
    
-   arr.reduce((acc, item, index, array) => {
+   
+  return  arr.reduce((acc, item, index, array) => {
       if (acc.indexOf(item) === -1) {
          acc.push(item);
-         arr1.push(item);
+   
       }
       return acc;
    }, []); 
 
-   return arr1;
+  
 }
 
 /**
@@ -706,7 +666,9 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+   if (indexes.length === 2) {return arr[indexes[0]][indexes[1]]};
+   if (indexes.length === 1) {return arr[indexes[0]]};
+   if (indexes.length === 3) {return arr[indexes[0]][indexes[1]][indexes[2]]};
 }
 
 

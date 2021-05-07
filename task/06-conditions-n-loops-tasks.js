@@ -293,7 +293,85 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    var str = String(ccn);
+    var array = str.split('');
+    //console.log('дан массив = ', array);
+    var kontr = array[array.length - 1];
+    //console.log("контрольная цифра = ", kontr);
+    //console.log("длина массива = ",array.length)
+    // для нечетного количества цифр в номере счета
+    if (array.length % 2 === 1) {
+        
+        const newArr2 = array.reduce(function(acc, item, index, array) {
+            if (index % 2 !== 0 ) {
+                acc.push(item);
+            }
+            return acc;
+        }, []);
+        //console.log("четные элементы", newArr2);
+
+        const newArr1 = array.reduce(function(acc, item, index, array) {
+            if (index % 2 === 0 ) {
+                acc.push(item);
+            }
+            
+            return acc;
+        }, []);
+        newArr1.pop();
+        //console.log("нечетные элементы", newArr1);
+
+        const newArr22 = newArr2.map((item) => item * 2);
+        for (let i = 0; i < newArr2.length; i++){
+            if (newArr22[i] >= 10) {newArr22[i] = newArr22[i] - 9}
+        }
+        //console.log('после умножения на 2', newArr22);
+
+        var sum1 = newArr1.reduce((acc, item) => acc + +item, 0 );
+        var sum2 = newArr22.reduce((acc, item) => acc + +item, 0 );
+        var sum = sum1 + sum2;
+        //console.log(sum);
+
+        if ((sum + +kontr) % 10 === 0) {
+            return true} 
+            else return false;
+    }
+    // для четного количества цифр в номере счета
+    if (array.length % 2 === 0) {
+        
+        const newArr2 = array.reduce(function(acc, item, index, array) {
+            if (index % 2 === 0 ) {
+                acc.push(item);
+            }
+            return acc;
+        }, []);
+        //console.log("четные элементы", newArr2);
+
+        const newArr1 = array.reduce(function(acc, item, index, array) {
+            if (index % 2 !== 0 ) {
+                acc.push(item);
+            }
+            
+            return acc;
+        }, []);
+        newArr1.pop();
+        //console.log("нечетные элементы", newArr1);
+
+        const newArr22 = newArr2.map((item) => item * 2);
+        for (let i = 0; i < newArr2.length; i++){
+            if (newArr22[i] >= 10) {newArr22[i] = newArr22[i] - 9}
+        }
+        //console.log('после умножения на 2', newArr22);
+
+        var sum1 = newArr1.reduce((acc, item) => acc + +item, 0 );
+        var sum2 = newArr22.reduce((acc, item) => acc + +item, 0 );
+        var sum = sum1 + sum2;
+        //console.log(sum);
+
+        if ((sum + +kontr) % 10 === 0) {
+            return true} 
+            else return false;
+    }
+
 }
 
 
@@ -437,10 +515,10 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    var x = parseInt(num, n);
-    console.log(x);
+    //var x = parseInt(num, n);
+    //console.log(x);
     
-    //throw new Error('Not implemented');
+    throw new Error('Not implemented');
 }
 
 
