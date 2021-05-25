@@ -259,7 +259,7 @@ function getMovingSum(arr) {
    const result = arr.reduce((acc, item, index, arr) => {
       acc = array[index-1] + arr[index];
       array.push(array[index-1] + arr[index]);
-      return acc;
+      return acc
    }, );
 
    return array;   
@@ -355,40 +355,25 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   
-   for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === 'nine') {arr[i] = 9};
-      if (arr[i] === 'eight') {arr[i] = 8};
-      if (arr[i] === 'one') {arr[i] = 1};
-      if (arr[i] === 'two') {arr[i] = 2};
-      if (arr[i] === 'three') {arr[i] = 3};
-      if (arr[i] === 'zero') {arr[i] = 0};
-      if (arr[i] === 'five') {arr[i] = 5};
-      if (arr[i] === 'four') {arr[i] = 4};
-      if (arr[i] === 'six') {arr[i] = 6};
-      if (arr[i] === 'seven') {arr[i] = 7};
-   }
-   
-   arr.sort(function(a, b) {
-      return a - b;
-    });
-    
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === 9) {arr[i] = 'nine'};
-      if (arr[i] === 8) {arr[i] = 'eight'};
-      if (arr[i] === 1) {arr[i] = 'one'};
-      if (arr[i] === 2) {arr[i] = 'two'};
-      if (arr[i] === 3) {arr[i] = 'three'};
-      if (arr[i] === 0) {arr[i] = 'zero'};
-      if (arr[i] === 4) {arr[i] = 'four'};
-      if (arr[i] === 5) {arr[i] = 'five'};
-      if (arr[i] === 6) {arr[i] = 'six'};
-      if (arr[i] === 7) {arr[i] = 'seven'};  
-   }
- 
-   if (arr.length === 0) return arr;
+   const digitals = {
+      'zero': 0,
+      'one': 1,
+      'two': 2,
+      'three': 3,
+      'four': 4,
+      'five': 5,
+      'six': 6,
+      'seven': 7,
+      'eight': 8,
+      'nine': 9,
+      
+   };
+   return arr.map(x => digitals[x]).sort().map(x => {
+      const pairs = Object.entries(digitals);
+      const name = pairs.find(p => p[1] === x)[0];
 
-   return arr;
+      return name;
+   });
 }
 
 /** 
@@ -619,11 +604,21 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  console.log('результат=',  array
-                                 .filter(item => item.country === 'Belarus' )
-                                 .map(item => item.city));
-  
-  //throw new Error('Not implemented');
+   
+      return array.reduce((acc, item, index, array) => {
+         const key = keySelector(item);
+         const value = valueSelector(item);
+         const temp = acc.get(key);
+           if (temp) {
+           acc.set(key, [...temp, value]);
+           return acc;
+         }
+   
+         acc.set(key, [value]);
+         
+         return acc;
+       }, new Map());
+   
 }
 
 

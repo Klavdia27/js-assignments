@@ -406,24 +406,6 @@ function getDigitalRoot(num) {
     if (sum > 9) {summa(sum)};
 
     return sum;
-    
-    
-    //const dl = num.toString().length;
-    //console.log( num, num.toString().length);
-    /**var b = String(num).split("");
-    var x = num; 
-     
-    while (x > 10) {
-     x = b.reduce( (acc,item,index,b) => acc + +item, 0);
-     b = String(acc).split("");
-    }
-    console.log (b);
-    return x
-    */
-
-    //console.log(b);
-    //console.log(+b[0] + +b[1])
-    
 }
 
 
@@ -449,13 +431,46 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-   /**  var array = str.split('');
-    console.log(array);
-    */
+    /**console.log('str=', str);
+     var array = str.split('');
+    console.log('array=', array);*/
+    let opening = {
+        curly: '{',
+        square: '[',
+        round: '(',
+        angle: '<'
+      };
     
+    let closing = {
+        curly: '}',
+        square: ']',
+        round: ')',
+        angle: '>'
+      };
+
+    let counter = 0;
+
+    console.log(str);
+
+      for (let char of str) {
+         // console.log('char=', char);
+
+        if (char === opening.curly || char === opening.square || char === opening.paren || char === opening.angle)
+          { counter++ };
+  
+        if (char === closing.curly || char === closing.square || char === closing.paren || char === closing.angle)
+          { counter-- };
+        
+        if (counter < 0) return false;
+          //console.log('counter=', counter);
+      }
+
+    //if (counter < 0) return false;
+    if (counter > 0) return false; 
+    return true;
+       
     
-    
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
 }
 
 
